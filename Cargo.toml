@@ -1,7 +1,7 @@
 # Config https://github.com/PyO3/pyo3/blob/master/guide/src/get_started.md
 [package]
 name = "rscase"
-version = "0.0.1"
+version = "0.0.2"
 authors = ["Sondre Lillebø Gundersen <sondrelg@live.no>"]
 
 [lib]

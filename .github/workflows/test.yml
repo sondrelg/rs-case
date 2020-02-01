@@ -1,25 +1,37 @@
 on: [push]
-name: Test
+name: Test & Deploy
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - name: Use nightly rust
-      run: rustup override set nightly
+      - name: Use nightly rust
+        run: rustup override set nightly
 
-    - name: Install cargo-tarpaulin for coverage
-      run: cargo install cargo-tarpaulin
+      - name: Install cargo-tarpaulin for coverage
+        run: cargo install cargo-tarpaulin
 
-    - uses: actions/checkout@v2
-    - name: Build
-      run: cargo build --verbose
+      - uses: actions/checkout@v2
+      - name: Build
+        run: cargo build --verbose
 
-    - name: Run tests
-      run: cargo test --verbose
+      - name: Run tests
+        run: cargo test --verbose
 
-    - name: Generate xml
-      run: cargo tarpaulin --out Xml
+      - name: Generate xml
+        run: cargo tarpaulin --out Xml
 
-    - name: Push to codecov
-      run: bash <(curl -s https://codecov.io/bash) && echo "Uploaded code coverage"
+      - name: Upload coverage to Codecov
+        run: bash <(curl -s https://codecov.io/bash) && echo "Uploaded code coverage"
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Install packages
+        run: pip install -r requirements-pypi.txt
+
+      - name: Publish
+        run: maturin publish -o -u ${{secrets.PYPI_USERNAME}} -p ${{secrets.PYPI_PASSWORD}}
