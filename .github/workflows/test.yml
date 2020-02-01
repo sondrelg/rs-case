@@ -7,7 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - uses: actions-rs/cargo@v1
 
       - name: Install Rust latest nightly
         uses: actions-rs/toolchain@v1
@@ -15,13 +14,10 @@ jobs:
             toolchain: nightly
             override: true
 
-      - name: Build
-        run: cargo build
-
       - name: Install Cargo-Tarpaulin (coverage)
         run: cargo install cargo-tarpaulin
 
-      - name: Testing
+      - name: Test
         run: test
 
       - name: Generate XML
@@ -46,9 +42,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements-pypi.txt
-
-      - name: Install packages
-        run: pip install -r requirements-pypi.txt
 
       - name: Publish
         run: maturin publish -o -u ${{secrets.PYPI_USERNAME}} -p ${{secrets.PYPI_PASSWORD}}
