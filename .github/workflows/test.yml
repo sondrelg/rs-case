@@ -15,11 +15,11 @@ jobs:
           toolchain: nightly
           override: true
 
-      - name: Test
-        run: cargo test
-
       - name: Install Cargo-Tarpaulin (coverage)
         run: cargo install cargo-tarpaulin
+
+      - name: Test
+        run: cargo test
 
       - name: Generate XML
         run: cargo tarpaulin --out Xml
