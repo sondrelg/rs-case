@@ -28,6 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: test
     steps:
+      - run: ls
       - name: Install packages
         run: pip install -r requirements-pypi.txt
 
