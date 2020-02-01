@@ -19,7 +19,7 @@ jobs:
         run: cargo install cargo-tarpaulin
 
       - name: Test
-        run: test
+        run: cargo test
 
       - name: Generate XML
         run: cargo tarpaulin --out Xml
