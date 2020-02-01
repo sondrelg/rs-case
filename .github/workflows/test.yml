@@ -1,9 +1,9 @@
 on: [push]
-name: Test & Deploy
+name: Pipeline
 
 jobs:
   test:
-    name: Build and Test
+    name: Tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -14,7 +14,7 @@ jobs:
             toolchain: nightly
             override: true
 
-      - name: Install Cargo
+      - name: Install cargo
         uses: actions-rs/cargo@v1
         with:
           command: build
@@ -23,7 +23,7 @@ jobs:
       - name: Install Cargo-Tarpaulin (coverage)
         uses: actions-rs/cargo@v1
         with:
-          command: install cargo-tarpaulin
+          command: cargo install cargo-tarpaulin
 
       - name: Run tests
         uses: actions-rs/cargo@v1
