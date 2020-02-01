@@ -45,4 +45,4 @@ jobs:
           pip install -r requirements-pypi.txt
 
       - name: Publish
-        run: maturin publish -o -u ${{secrets.PYPI_USERNAME}} -p ${{secrets.PYPI_PASSWORD}}
+        run: maturin publish -u ${{secrets.PYPI_USERNAME}} -p ${{secrets.PYPI_PASSWORD}}
