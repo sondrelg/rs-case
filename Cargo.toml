@@ -8,12 +8,19 @@ authors = ["Sondre Lillebø Gundersen <sondrelg@live.no>"]
 name = "rscase"
 crate-type = ["cdylib"]
 
-[dependencies.pyo3]
-version = "0.9.0-alpha.1"
-features = ["extension-module"]
+[dependencies]
+pyo3 = "0.9.0-alpha.1"
 
 [package.metadata.maturin]
-requires-dist = ['setuptools-rust>=0.10.6', 'wheel', 'toml', 'setuptools']
+name = "rscase"
+version = "0.0.2"
+summary = "A module for string case manipulation."
+keywords = ["camel case", "snake case", "pascal case", "kebab case", "rust", "python"]
+homepage = "https://github.com/sondrelg/rscase"
+download-url = "https://github.com/sondrelg/rscase"
+author = "Sondre Lillebø Gundersen"
+author-email = "sondrelg@live.no"
+license = "BSD"
 classifier = [
 "Development Status :: 3 - Alpha",
 "Environment :: Web Environment",
@@ -28,7 +35,9 @@ classifier = [
 "Topic :: Software Development :: Libraries :: Python Modules",
 "Topic :: Text Processing :: General",
 ]
-maintainer = "Sondre Lillebø Gundersen"
-maintainer-email = "sondrelg@live.no"
-required-python = true
-project-url = "https://github.com/sondrelg/rscase"
+requires-dist = []
+requires-python = '>= 3.5'
+project-url = [
+"Code, https://github.com/sondrelg/rscase",
+"Pypi, https://pypi.org/project/rscase/"
+]

@@ -5,6 +5,7 @@ use std::string::String;
 
 use pyo3::prelude::*;
 use pyo3::wrap_pyfunction;
+use pyo3::prelude::PyModule;
 
 #[pyfunction]
 fn snake_case(s: &str) -> PyResult<String> {
@@ -116,7 +117,7 @@ fn train_case(s: &str) -> PyResult<String> {
 
 #[pymodule]
 #[allow(unused_variables)]
-fn rscase(py: Python, m: &PyModule) -> PyResult<()> {
+fn cases(py: Python, m: &PyModule) -> PyResult<()> {
     m.add_wrapped(wrap_pyfunction!(camel_case))?;
     m.add_wrapped(wrap_pyfunction!(snake_case))?;
     m.add_wrapped(wrap_pyfunction!(pascal_case))?;

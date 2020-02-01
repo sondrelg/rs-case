@@ -1,9 +1,9 @@
 ![Py](https://img.shields.io/badge/Python-v3.8-blue.svg)
 ![Py](https://img.shields.io/badge/Rust-v1.41.0-orange.svg)
 
-# rsCase
+# rscase - a small collection of string case manipulation helpers
 
-rsCase is a simple python package implemented in [Rust](https://www.rust-lang.org/learn), using [pyo3](https://github.com/PyO3/pyo3) to access Rust binding for the python interpreter. 
+rscase is a simple python package implemented in [Rust](https://www.rust-lang.org/learn), using [pyo3](https://github.com/PyO3/pyo3) to access Rust binding for the python interpreter. 
 
 Package provides utility functions for the case-conversions:
 
