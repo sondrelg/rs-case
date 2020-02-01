@@ -6,17 +6,20 @@
 ![Rust](https://img.shields.io/badge/Rust-v1.41.0-orange.svg)
 
 
-# rscase - a small collection of string case manipulation helpers
+# rs-case - a small collection of string case manipulation helpers
 
-rscase is a simple python package implemented in [Rust](https://www.rust-lang.org/learn), using [pyo3](https://github.com/PyO3/pyo3) to access Rust binding for the python interpreter. 
+rs-case is a simple python package implemented in [Rust](https://www.rust-lang.org/learn), using [pyo3](https://github.com/PyO3/pyo3) to access Rust binding for the python interpreter. 
 
 Package provides utility functions for generating the following cases:
 
-- camelCase
-- snake_case
-- PascalCase
-- kebab-case
-- TRAIN-CASE
+|Case name        | Example           |
+| :--------------: |:-----------------:|
+| Camel case       | camelCasedValue   |
+| Snake case       | snake_cased_value |
+| Pascal case      | PascalCasedValue  |
+| Train case       | TRAIN-CASED-VALUE |
+| Kebab case       | kebab-cased-value |
+
 
 ## Install 
 
