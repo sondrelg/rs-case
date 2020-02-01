@@ -107,7 +107,6 @@ fn kebab_case(s: &str) -> PyResult<String> {
     Ok(cased_s)
 }
 
-
 #[pyfunction]
 fn train_case(s: &str) -> PyResult<String> {
     let cased_s = kebab_case(&s);
@@ -122,6 +121,7 @@ fn rscase(py: Python, m: &PyModule) -> PyResult<()> {
     m.add_wrapped(wrap_pyfunction!(snake_case))?;
     m.add_wrapped(wrap_pyfunction!(pascal_case))?;
     m.add_wrapped(wrap_pyfunction!(kebab_case))?;
+    m.add_wrapped(wrap_pyfunction!(train_case))?;
     Ok(())
 }
 

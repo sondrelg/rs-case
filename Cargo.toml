@@ -28,3 +28,7 @@ classifier = [
 "Topic :: Software Development :: Libraries :: Python Modules",
 "Topic :: Text Processing :: General",
 ]
+maintainer = "Sondre Lillebø Gundersen"
+maintainer-email = "sondrelg@live.no"
+required-python = true
+project-url = "https://github.com/sondrelg/rscase"

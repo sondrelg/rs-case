@@ -1,5 +1,5 @@
 [build-system]
-requires = ["maturin", "setuptools", "wheel", "setuptools-rust", "toml"]
+requires = ["maturin"]
 build-backend = "maturin"
 
 [tool.maturin]
