@@ -1,0 +1,31 @@
+# Config https://github.com/PyO3/pyo3/blob/master/guide/src/get_started.md
+
+[package]
+name = "rscase"
+version = "0.0.1"
+authors = ["Sondre Lillebø Gundersen <sondrelg@live.no>"]
+
+[lib]
+name = "rscase"
+crate-type = ["cdylib"]
+
+[dependencies.pyo3]
+version = "0.9.0-alpha.1"
+features = ["extension-module"]
+
+[package.metadata.maturin]
+requires-dist = ['setuptools-rust>=0.10.6', 'wheel', 'toml', 'setuptools']
+classifier = [
+"Development Status :: 3 - Alpha",
+"Environment :: Web Environment",
+"Intended Audience :: Developers",
+"License :: OSI Approved :: BSD License",
+"Natural Language :: English",
+"Operating System :: OS Independent",
+"Programming Language :: Python",
+"Programming Language :: Python :: 3 :: Only",
+"Programming Language :: Python :: 3.8",
+"Programming Language :: Rust",
+"Topic :: Software Development :: Libraries :: Python Modules",
+"Topic :: Text Processing :: General",
+]

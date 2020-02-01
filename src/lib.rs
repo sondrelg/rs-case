@@ -1,11 +1,14 @@
+#[macro_use]
+extern crate pyo3;
+
 use std::str;
 use std::string::String;
 
+use pyo3::{PyResult, wrap_pyfunction};
 use pyo3::prelude::*;
-use pyo3::wrap_pyfunction;
 
 #[pyfunction]
-pub fn snake_case(s: &str) -> String {
+fn snake_case(s: &str) -> PyResult<String> {
     let mut cased_s: String = String::new();
     let character_vector: Vec<char> = s.chars().collect();
     let dash_vector: Vec<char> = "-".chars().collect();
@@ -24,11 +27,11 @@ pub fn snake_case(s: &str) -> String {
             cased_s.push_str(&character_vector[i].to_string());
         }
     }
-    cased_s
+    Ok(cased_s)
 }
 
 #[pyfunction]
-pub fn camel_case(s: &str) -> String {
+fn camel_case(s: &str) -> PyResult<String> {
     let mut cased_s: String = String::new();
     let character_vector: Vec<char> = s.chars().collect();
     let dash_vector: Vec<char> = "-".chars().collect();
@@ -53,11 +56,11 @@ pub fn camel_case(s: &str) -> String {
             cased_s.push_str(&character_vector[i].to_string());
         }
     };
-    cased_s
+    Ok(cased_s)
 }
 
 #[pyfunction]
-fn pascal_case(s: &str) -> String {
+fn pascal_case(s: &str) -> PyResult<String> {
     let mut cased_s: String = String::new();
     let character_vector: Vec<char> = s.chars().collect();
     let dash_vector: Vec<char> = "-".chars().collect();
@@ -82,11 +85,11 @@ fn pascal_case(s: &str) -> String {
             cased_s.push_str(&character_vector[i].to_string());
         }
     };
-    cased_s
+    Ok(cased_s)
 }
 
 #[pyfunction]
-fn kebab_case(s: &str) -> String {
+fn kebab_case(s: &str) -> PyResult<String> {
     let mut cased_s: String = String::new();
     let character_vector: Vec<char> = s.chars().collect();
     let underscore_vector: Vec<char> = "_".chars().collect();
@@ -102,14 +105,9 @@ fn kebab_case(s: &str) -> String {
             cased_s.push_str(&character_vector[i].to_lowercase().to_string());
         }
     };
-    cased_s
+    Ok(cased_s)
 }
 
-#[pyfunction]
-fn train_case(s: &str) -> String {
-    let mut cased_s: String = kebab_case(&s);
-    cased_s.to_uppercase()
-}
 
 #[pymodule]
 fn rscase(py: Python, m: &PyModule) -> PyResult<()> {
@@ -117,7 +115,6 @@ fn rscase(py: Python, m: &PyModule) -> PyResult<()> {
     m.add_wrapped(wrap_pyfunction!(snake_case))?;
     m.add_wrapped(wrap_pyfunction!(pascal_case))?;
     m.add_wrapped(wrap_pyfunction!(kebab_case))?;
-    m.add_wrapped(wrap_pyfunction!(train_case))?;
     Ok(())
 }
 
