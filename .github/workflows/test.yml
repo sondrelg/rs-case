@@ -5,9 +5,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - name: Update
-      run: sudo apt-get update && apt-get install libssl-dev pkg-config cmake zlib1g-dev
-
     - name: Use nightly rust
       run: rustup override set nightly
 
