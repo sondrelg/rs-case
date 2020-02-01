@@ -8,9 +8,6 @@ jobs:
     - name: Use nightly rust
       run: rustup override set nightly
 
-    - name: Cargo clean
-      run: cargo clean
-
     - name: Install cargo-tarpaulin for coverage
       run: cargo install cargo-tarpaulin
 
