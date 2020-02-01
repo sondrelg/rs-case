@@ -7,12 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+      - uses: actions-rs/toolchain@v1
 
       - name: Install Rust latest nightly
-        uses: actions-rs/toolchain@v1
-        with:
-            toolchain: nightly
-            override: true
+        run: rustup override set nightly
 
       - name: Install Cargo-Tarpaulin (coverage)
         run: cargo install cargo-tarpaulin
