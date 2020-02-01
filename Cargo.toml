@@ -2,7 +2,12 @@
 [package]
 name = "rscase"
 version = "0.0.2"
+summary = "A module for string case manipulation."
 authors = ["Sondre Lillebø Gundersen <sondrelg@live.no>"]
+keywords = ["camel case", "snake case", "pascal case", "kebab case", "rust", "python"]
+homepage = "https://github.com/sondrelg/rscase"
+download-url = "https://github.com/sondrelg/rscase"
+license = "BSD"
 
 [lib]
 name = "rscase"
@@ -12,15 +17,6 @@ crate-type = ["cdylib"]
 pyo3 = "0.9.0-alpha.1"
 
 [package.metadata.maturin]
-name = "rscase"
-version = "0.0.2"
-summary = "A module for string case manipulation."
-keywords = ["camel case", "snake case", "pascal case", "kebab case", "rust", "python"]
-homepage = "https://github.com/sondrelg/rscase"
-download-url = "https://github.com/sondrelg/rscase"
-author = "Sondre Lillebø Gundersen"
-author-email = "sondrelg@live.no"
-license = "BSD"
 classifier = [
 "Development Status :: 3 - Alpha",
 "Environment :: Web Environment",
