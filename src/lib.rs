@@ -89,8 +89,6 @@ fn pascal_case(s: &str) -> String {
 fn kebab_case(s: &str) -> String {
     let mut cased_s: String = String::new();
     let character_vector: Vec<char> = s.chars().collect();
-    let dash_vector: Vec<char> = "-".chars().collect();
-    let dash = dash_vector[0];
     let underscore_vector: Vec<char> = "_".chars().collect();
     let underscore = underscore_vector[0];
     for i in 0..character_vector.len() {
