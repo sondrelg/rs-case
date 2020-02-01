@@ -30,7 +30,7 @@ jobs:
     steps:
       - run: pwd
       - name: Install packages
-        run: pip install -r requirements-pypi.txt
+        run: pip install -r ../requirements-pypi.txt
 
       - name: Publish
         run: maturin publish -o -u ${{secrets.PYPI_USERNAME}} -p ${{secrets.PYPI_PASSWORD}}
