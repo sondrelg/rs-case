@@ -22,9 +22,7 @@ jobs:
         run: cargo tarpaulin --out Xml
 
       - name: Upload coverage to Codecov
-        run: bash <(curl -s https://codecov.io/bash) && echo "Uploaded code coverage"
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+        run: bash <(curl -s https://codecov.io/bash) -t ${{secrets.CODECOV_TOKEN}} && echo "Uploaded code coverage"
 
   publish:
     runs-on: ubuntu-latest
