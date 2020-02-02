@@ -131,7 +131,6 @@ pub fn train_case(s: &str) -> PyResult<String> {
 
 #[pymodule]
 #[allow(unused_variables)]
-#[cfg_attr(tarpaulin, skip)]
 fn cases(py: Python, m: &PyModule) -> PyResult<()> {
     m.add_wrapped(wrap_pyfunction!(camel_case))?;
     m.add_wrapped(wrap_pyfunction!(snake_case))?;
