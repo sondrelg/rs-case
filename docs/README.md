@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/sondrelg/rscase/branch/master/graph/badge.svg)](https://codecov.io/gh/sondrelg/rscase)
 
 ![Rust](https://img.shields.io/badge/Rust-v1.41.0-orange.svg)
-![Py](https://img.shields.io/badge/Python-3.8-blue.svg)
+![Py](https://img.shields.io/badge/Python-v3.8-blue.svg)
 
 
 # rscase - a simple collection of string case manipulation helpers
