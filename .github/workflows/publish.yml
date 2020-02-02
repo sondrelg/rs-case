@@ -28,4 +28,4 @@ jobs:
         run: echo ${{secrets.PYPI_USERNAME}}
 
       - name: Publish
-        run: maturin publish -u ${{secrets.PYPI_USERNAME}} -p ${{secrets.PYPI_PASSWORD}}
+        run: maturin publish -u ${{secrets.PYPI_USERNAME}} -p ${{secrets.PYPI_PASSWORD}} --interpreter=3.8
