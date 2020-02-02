@@ -3,28 +3,26 @@ on:
   push:
     branches:
       - master
+
 jobs:
   test:
-
-    name: Tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-
       - uses: actions/checkout@v2
-      - name: Install Rust latest nightly
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: nightly
-          override: true
+      - name: Use nightly rust
+        run: rustup override set nightly
 
-      - name: Install Cargo-Tarpaulin (coverage)
+      - name: Install cargo-tarpaulin for coverage
         run: cargo install cargo-tarpaulin
 
-      - name: Test
+      - uses: actions/checkout@v2
+      - name: Build
+        run: cargo build
+
+      - name: Run tests
         run: cargo test
 
-      - name: Generate XML
+      - name: Generate xml
         run: cargo tarpaulin --out Xml
 
       - name: Upload coverage to Codecov
