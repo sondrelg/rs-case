@@ -22,7 +22,17 @@ jobs:
       - name: Test
         uses: actions-rs/cargo@v1
         with:
-          command: [cargo clean, cargo build, cargo test]
+          command: cargo clean
+
+      - name: Test
+        uses: actions-rs/cargo@v1
+        with:
+          command: cargo build
+
+      - name: Test
+        uses: actions-rs/cargo@v1
+        with:
+          command: cargo test
 
       - name: Generate XML
         uses: actions-rs/cargo@v1
