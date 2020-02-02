@@ -24,5 +24,8 @@ jobs:
       - name: Build
         run: maturin build
 
+      - name: Secret test
+        run: echo ${{secrets.PYPI_USERNAME}}
+
       - name: Publish
         run: maturin publish -u ${{secrets.PYPI_USERNAME}} -p ${{secrets.PYPI_PASSWORD}}
