@@ -10,7 +10,7 @@ jobs:
         run: rustup override set nightly
 
       - name: Install tarpaulin dependencies
-        run: sudo apt-get update && apt-get install libssl-dev pkg-config cmake zlib1g-dev
+        run: sudo apt-get update && apt-get install libssl-dev
 
       - name: Install cargo-tarpaulin for coverage
         run: cargo install cargo-tarpaulin
