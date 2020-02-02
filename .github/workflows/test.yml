@@ -4,12 +4,12 @@ name: tests
 jobs:
   test:
     name: tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-16.04
     steps:
       - uses: actions/checkout@master
 
       - name: Use nightly rust
-        run: rustup override set nightly-2018-09-01
+        run: rustup override set nightly
 
       - name: Install cargo-tarpaulin for coverage
         run: cargo install cargo-tarpaulin
