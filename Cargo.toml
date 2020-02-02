@@ -1,6 +1,6 @@
 [package]
 name = "rscase"
-version = "1.0.0"
+version = "1.0.1"
 edition = '2018'
 authors = ["Sondre Lillebø Gundersen <sondrelg@live.no>"]
 documentation = "https://github.com/sondrelg/rs-case"
