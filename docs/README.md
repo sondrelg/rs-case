@@ -22,6 +22,22 @@ In terms of function, the package provides utility functions for generating stri
 
 While it is very common for systems to convert, e.g., `snake_case` to `camelCase`, it doesn't really make sense to convert `TRAIN-CASE` to itself, and it's not something you should look to use this package for. If you use the module for *anything*, you should keep in mind that the logic is built around converting string from snake/camel case to another format. Converting `"TRAIN-CASE"` to train case will therefore yield `"T-R-A-I-N--C-A-S-E"`. 
 
+## Install 
+
+```shell
+pip install rscase
+```
+
+## Usage
+
+```python
+from rscase import camel_case
+
+camel_case('this_is-a_Test')
+>> thisIsATest
+```
+
+
 ## Benchmark
 
 Because the functions contained in this package only do some very simple string manipulation, they seem like they might actually be good candidates for a performance test - so why not do one.
@@ -76,22 +92,6 @@ After running the tests, the results seems to be pretty promising in favor of th
 After only 100 reps, the results seem to stabilize, and flatten out at around a 2.3x longer execution time for the Python implementation.
 
 The 1-rep result however, seems to show that Python performs better in the scenario that would normally matter. For anyone worried about this, I think there's no doubt that one test of 1 rep is a poor experiment, and so I ran this scenario another one million times. With a larger sample, the average improvement for `1 rep` averages to `1.85x` while the median becomes `1.88x`. In short, the Rust implementation seems to outperform the Python across the board.
-
-
-## Install 
-
-```shell
-pip install rscase
-```
-
-## Usage
-
-```python
-from rscase import camel_case
-
-camel_case('this_is-a_Test')
->> thisIsATest
-```
 
 
 ## Contributing
