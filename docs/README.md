@@ -7,7 +7,7 @@
 
 # rs-case
 
-This module offers a handful of case-formatting utility functions. It is a very simple python package, written in [Rust](https://www.rust-lang.org/learn), and implemented using [pyo3](https://github.com/PyO3/pyo3) which offers you easy Rust bindings for the Python interpreter.
+This module offers a handful of case-formatting utility functions. It is a very simple Python package, written in [Rust](https://www.rust-lang.org/learn), and implemented using [pyo3](https://github.com/PyO3/pyo3) which offers you easy Rust bindings for the Python interpreter.
 
 ## Install 
 
@@ -29,8 +29,8 @@ The case-standards and their functions are listed below.
 | kebab case       | kebab_case | kebab-cased-value |
 | train case       | train_case | TRAIN-CASED-VALUE |
 
-All functions are accessed the same way
-```python
+All functions are imported and accessed the same way.
+```shell script
 from rscase import rscase
 
 rscase.camel_case('this_is-a_Test')
