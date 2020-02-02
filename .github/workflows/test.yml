@@ -11,8 +11,8 @@ jobs:
       - name: Install cargo-tarpaulin for coverage
         run: cargo install cargo-tarpaulin
 
+      - uses: actions/checkout@v2
       - name: Run tests
-        uses: actions/checkout@v2
         run: cargo test
 
       - name: Generate xml
