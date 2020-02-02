@@ -21,5 +21,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements-pypi.txt
 
+      - name: Build
+        run: maturin build
+
       - name: Publish
         run: maturin publish -u ${{secrets.PYPI_USERNAME}} -p ${{secrets.PYPI_PASSWORD}}

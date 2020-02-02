@@ -1,11 +1,9 @@
-# Config https://github.com/PyO3/pyo3/blob/master/guide/src/get_started.md
 [package]
 name = "rscase"
 version = "0.1.0"
+edition = '2018'
 authors = ["Sondre Lillebø Gundersen <sondrelg@live.no>"]
-keywords = ["camel case", "snake case", "pascal case", "kebab case", "rust", "python"]
-homepage = "https://github.com/sondrelg/rscase"
-license = "BSD"
+documentation = "https://github.com/sondrelg/rs-case"
 
 [lib]
 name = "rscase"
@@ -16,6 +14,12 @@ version = "0.9.0-alpha.1"
 features = ["extension-module"]
 
 [package.metadata.maturin]
+requires-dist = []
+requires-python = '>= 3.5'
+project-url = [
+"Code, https://github.com/sondrelg/rscase",
+"Pypi, https://pypi.org/project/rscase/"
+]
 classifier = [
 "Development Status :: 3 - Alpha",
 "Environment :: Web Environment",
@@ -29,10 +33,4 @@ classifier = [
 "Programming Language :: Rust",
 "Topic :: Software Development :: Libraries :: Python Modules",
 "Topic :: Text Processing :: General",
-]
-requires-dist = []
-requires-python = '>= 3.5'
-project-url = [
-"Code, https://github.com/sondrelg/rscase",
-"Pypi, https://pypi.org/project/rscase/"
 ]
