@@ -1,43 +1,26 @@
+on: [push]
 name: tests
-on: [push, pull_request]
+
 jobs:
   test:
-    name: tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
+      - name: Use nightly rust
+        run: rustup override set nightly
+
+      - name: Install cargo-tarpaulin for coverage
+        run: cargo install cargo-tarpaulin
 
       - uses: actions/checkout@v2
-      - name: Install Rust latest nightly
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: nightly
-          override: true
+      - name: Build
+        run: cargo build
 
-      - name: Install Cargo-Tarpaulin (coverage)
-        uses: actions-rs/cargo@v1
-        with:
-          command: cargo install cargo-tarpaulin
+      - name: Run tests
+        run: cargo test
 
-      - name: Test
-        uses: actions-rs/cargo@v1
-        with:
-          command: cargo clean
-
-      - name: Test
-        uses: actions-rs/cargo@v1
-        with:
-          command: cargo build
-
-      - name: Test
-        uses: actions-rs/cargo@v1
-        with:
-          command: cargo test
-
-      - name: Generate XML
-        uses: actions-rs/cargo@v1
-        with:
-          command: tarpaulin --out Xml
+      - name: Generate xml
+        run: cargo tarpaulin --out Xml
 
       - name: Upload coverage to Codecov
         run: bash <(curl -s https://codecov.io/bash) -t ${{secrets.CODECOV_TOKEN}} && echo "Uploaded code coverage"
