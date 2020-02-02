@@ -59,20 +59,20 @@ def rust_snake_case():
 
 The main difference between the two functions is that Rust requires you to create a vector of `char`'s to iterate through i string. You would never do this in Python, and I've left that part of it out of the Python implementation.
 
-#### Result
+### Results
 
 
 | Reps | Rust Execution Time | Python Execution Time | Difference |
 | :--------------: |:-----------------:| :--------------: |:-----------------:|
-| 1 | 18.30 μs | 14.20 μs | 0.78x |
-| 10 | 55.20 μs | 114.20 μs | 2.07x |
-| 100 | .49 ms | 1.11 ms | 2.27x |
-| 1000 | 4.88 ms | 11.18 ms | 2.28x |
-| 10 000 | 47.20 ms | 109.13 ms | 2.31x |
-| 100 000 | .47 s | 1.08 s | 2.31x |
-| 1000 000 | 4.83 s | 11.12 s | 2.30x |
-| 10 000 000 | 46.67 | 109.27 s | 2.34x |
-| 100 000 000 | 484 s | 1102 s | 2.28x |
+| 1 | 18.30 μs | 14.20 μs | <a style="color:green">0.78x</a> |
+| 10 | 55.20 μs | 114.20 μs | <a style="color:red">2.07x</a> |
+| 100 | .49 ms | 1.11 ms | <a style="color:green">2.27x</a> |
+| 1000 | 4.88 ms | 11.18 ms | <a style="color:green">2.28x</a> |
+| 10 000 | 47.20 ms | 109.13 ms | <a style="color:green">2.31x</a> |
+| 100 000 | .47 s | 1.08 s | <a style="color:green">2.31x</a> |
+| 1000 000 | 4.83 s | 11.12 s | <a style="color:green">2.30x</a> |
+| 10 000 000 | 46.67 | 109.27 s | <a style="color:green">2.34x</a> |
+| 100 000 000 | 484 s | 1102 s | <a style="color:green">2.28x</a> |
 
 Results were pretty promising in favor of the rust implementation, with a performance improvement (execution time) of ~2.25 once reps reach a certain volume. 
 
