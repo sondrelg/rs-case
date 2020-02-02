@@ -1,12 +1,15 @@
-name: Publish
+name: publish
 on: push
 
 jobs:
   publish:
-    name: Publish
+    name: publish
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+
+      - name: Use nightly rust
+        run: rustup override set nightly
 
       - name: Set up Python 3.8
         uses: actions/setup-python@v1
