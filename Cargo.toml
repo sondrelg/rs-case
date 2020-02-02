@@ -2,11 +2,9 @@
 [package]
 name = "rscase"
 version = "0.1.0"
-summary = "A module for string case manipulation."
 authors = ["Sondre Lillebø Gundersen <sondrelg@live.no>"]
 keywords = ["camel case", "snake case", "pascal case", "kebab case", "rust", "python"]
 homepage = "https://github.com/sondrelg/rscase"
-download-url = "https://github.com/sondrelg/rscase"
 license = "BSD"
 
 [lib]

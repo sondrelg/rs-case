@@ -4,7 +4,6 @@ use std::str;
 use std::string::String;
 
 use pyo3::prelude::*;
-use pyo3::prelude::PyModule;
 use pyo3::wrap_pyfunction;
 
 #[pyfunction]
