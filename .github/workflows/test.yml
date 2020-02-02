@@ -16,10 +16,14 @@ jobs:
           override: true
 
       - name: Install Cargo-Tarpaulin (coverage)
-        run: cargo install cargo-tarpaulin
+        uses: actions-rs/cargo@v1
+        with:
+          command: install cargo-tarpaulin
 
       - name: Test
-        run: cargo test
+        uses: actions-rs/cargo@v1
+        with:
+          commands: [cargo clean, cargo build, cargo test]
 
       - name: Generate XML
         run: cargo tarpaulin --out Xml
