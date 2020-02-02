@@ -8,7 +8,10 @@ use pyo3::prelude::PyModule;
 use pyo3::wrap_pyfunction;
 
 #[pyfunction]
-fn snake_case(s: &str) -> PyResult<String> {
+/// Converts a string to snake_case.
+///
+/// * `s` - The string you wish to convert.
+pub fn snake_case(s: &str) -> PyResult<String> {
     let mut cased_s: String = String::new();
     let character_vector: Vec<char> = s.chars().collect();
     let dash_vector: Vec<char> = "-".chars().collect();
@@ -31,7 +34,10 @@ fn snake_case(s: &str) -> PyResult<String> {
 }
 
 #[pyfunction]
-fn camel_case(s: &str) -> PyResult<String> {
+/// Converts a string to camelCase.
+///
+/// * `s` - The string you wish to convert.
+pub fn camel_case(s: &str) -> PyResult<String> {
     let mut cased_s: String = String::new();
     let character_vector: Vec<char> = s.chars().collect();
     let dash_vector: Vec<char> = "-".chars().collect();
@@ -60,7 +66,10 @@ fn camel_case(s: &str) -> PyResult<String> {
 }
 
 #[pyfunction]
-fn pascal_case(s: &str) -> PyResult<String> {
+/// Converts a string from camelCase or snake_case to PascalCase.
+///
+/// * `s` - The string you wish to convert.
+pub fn pascal_case(s: &str) -> PyResult<String> {
     let mut cased_s: String = String::new();
     let character_vector: Vec<char> = s.chars().collect();
     let dash_vector: Vec<char> = "-".chars().collect();
@@ -89,7 +98,10 @@ fn pascal_case(s: &str) -> PyResult<String> {
 }
 
 #[pyfunction]
-fn kebab_case(s: &str) -> PyResult<String> {
+/// Converts a string from camelCase or snake_case  to kebab-case.
+///
+/// * `s` - The string you wish to convert.
+pub fn kebab_case(s: &str) -> PyResult<String> {
     let mut cased_s: String = String::new();
     let character_vector: Vec<char> = s.chars().collect();
     let underscore_vector: Vec<char> = "_".chars().collect();
@@ -109,7 +121,10 @@ fn kebab_case(s: &str) -> PyResult<String> {
 }
 
 #[pyfunction]
-fn train_case(s: &str) -> PyResult<String> {
+/// Converts a string from camelCase or snake_case  to TRAIN-CASE.
+///
+/// * `s` - The string you wish to convert.
+pub fn train_case(s: &str) -> PyResult<String> {
     let cased_s = kebab_case(&s);
     Ok(cased_s.unwrap().to_uppercase())
 }
