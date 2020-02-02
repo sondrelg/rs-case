@@ -38,7 +38,7 @@ camel_case('this_is-a_Test')
 ```
 
 
-## Benchmark
+## Benchmarking Performance
 
 Because the functions contained in this package only do some very simple string manipulation, they seem like they might actually be good candidates for a performance test - so why not do one.
  
