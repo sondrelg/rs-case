@@ -24,11 +24,9 @@ While it is very common for systems to convert, e.g., `snake_case` to `camelCase
 
 ## Benchmark
 
-The most common reason someone would normally look to implement python packages in different languages has to be the performance aspect. Since this implementation only contains some very simple string manipulation, it seems like it might *actually* be a useful thing to use for benchmarking.
+Because the functions contained in this package only do some very simple string manipulation, they seem like they might actually be good candidates for a performance test - so why not do one.
  
-Out of the few functions contained in the `src/lib.rs` I chose to test the `snake_case` function, and used the python `timeit` library to run and time simulations. 
-
-To make sure we're comparing apples to apples, I write same function in python, using more or less identical logic.
+To make a test fair, and to make sure we're comparing apples to apples, I decided to test the Rust function `snake_case` to its Python twin, shown below.
 
 ```python
 from rscase import rscase
@@ -57,27 +55,27 @@ def rust_snake_case():
     return rscase.snake_case(string)
 ```
 
-The main difference between the two functions is that Rust requires you to create a vector of `char`'s to iterate through i string. You would never do this in Python, and I've left that part of it out of the Python implementation.
+The main difference between the two functions is that Rust requires you to create a vector of `char`'s to iterate through a string, while in Python you don't.
 
 ### Results
 
+After running the tests, the results seems to be pretty promising in favor of the rust implementation. 
 
 | Reps | Rust Execution Time | Python Execution Time | Difference |
 | :--------------: |:-----------------:| :--------------: |:-----------------:|
-| 1 | 18.30 μs | 14.20 μs | <a style="color:green">0.78x</a> |
-| 10 | 55.20 μs | 114.20 μs | <a style="color:red">2.07x</a> |
-| 100 | .49 ms | 1.11 ms | <a style="color:green">2.27x</a> |
-| 1000 | 4.88 ms | 11.18 ms | <a style="color:green">2.28x</a> |
-| 10 000 | 47.20 ms | 109.13 ms | <a style="color:green">2.31x</a> |
-| 100 000 | .47 s | 1.08 s | <a style="color:green">2.31x</a> |
-| 1000 000 | 4.83 s | 11.12 s | <a style="color:green">2.30x</a> |
-| 10 000 000 | 46.67 | 109.27 s | <a style="color:green">2.34x</a> |
-| 100 000 000 | 484 s | 1102 s | <a style="color:green">2.28x</a> |
+| 1 | 18.30 μs | 14.20 μs | 0.78x |
+| 10 | 55.20 μs | 114.20 μs | 2.07x |
+| 100 | .49 ms | 1.11 ms | 2.27x |
+| 1000 | 4.88 ms | 11.18 ms | 2.28x |
+| 10 000 | 47.20 ms | 109.13 ms | 2.31x |
+| 100 000 | .47 s | 1.08 s | 2.31x |
+| 1000 000 | 4.83 s | 11.12 s | 2.30x |
+| 10 000 000 | 46.67 | 109.27 s | 2.34x |
+| 100 000 000 | 484 s | 1102 s | 2.28x |
 
-Results were pretty promising in favor of the rust implementation, with a performance improvement (execution time) of ~2.25 once reps reach a certain volume. 
+After only 100 reps, the results seem to stabilize, and flatten out at around a 2.3x longer execution time for the Python implementation.
 
-The `1 rep` result *seems* poor at first, but doesn't mean anything in isolation, because there will be some variance in results - especially when you're talking about microseconds. After running the `1 rep` scenario on repeat another one million times, the average and median improvements for a `1 rep` simulation changes to `1.85x` and `1.88x` respectively. All in all, pretty decent.
-
+The 1-rep result however, seems to show that Python performs better in the scenario that would normally matter. For anyone worried about this, I think there's no doubt that one test of 1 rep is a poor experiment, and so I ran this scenario another one million times. With a larger sample, the average improvement for `1 rep` averages to `1.85x` while the median becomes `1.88x`. In short, the Rust implementation seems to outperform the Python across the board.
 
 
 ## Install 
