@@ -11,16 +11,7 @@ jobs:
       - name: Use nightly rust
         run: rustup override set nightly
 
-      - name: Install cargo-tarpaulin for coverage
-        run: cargo install cargo-tarpaulin
-
       - uses: actions/checkout@v2
 
       - name: Run tests
         run: cargo test
-
-      - name: Generate xml
-        run: cargo tarpaulin --out Xml
-
-      - name: Upload coverage to Codecov
-        run: bash <(curl -s https://codecov.io/bash) -t ${{secrets.CODECOV_TOKEN}} && echo "Uploaded code coverage"
