@@ -21,7 +21,7 @@ The package provides utility functions for generating strings formatted in sever
 
 The case-standards and their functions are listed below.
 
-| Case Name | Function Name | Format example |
+| Supported cases | Function | Format example |
 | :--------------: |:-----------------:| :--------------: |
 | camel case       | camel_case | camelCasedValue   |
 | snake case       | snake_case | snake_cased_value |
