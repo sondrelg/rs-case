@@ -92,10 +92,3 @@ After running the tests, the results seems to be pretty promising in favor of th
 After only 100 reps, the results seem to stabilize, and flatten out at around a 2.3x longer execution time for the Python implementation.
 
 The 1-rep result however, seems to show that Python performs better in the scenario that would normally matter. For anyone worried about this, I think there's no doubt that one test of 1 rep is a poor experiment, and so I ran this scenario another one million times. With a larger sample, the average improvement for `1 rep` averages to `1.85x` while the median becomes `1.88x`. In short, the Rust implementation seems to outperform the Python across the board.
-
-
-## Contributing
-
-Contributions are welcome. 
-
-Look in the docs folder for more info.
