@@ -5,22 +5,9 @@
 ![Rust](https://img.shields.io/badge/Rust-v1.41.0-orange.svg)
 ![Py](https://img.shields.io/badge/Python-v3.8-blue.svg)
 
-
 # rs-case
 
-This module is a simple python package implemented in [Rust](https://www.rust-lang.org/learn), using [pyo3](https://github.com/PyO3/pyo3) to access binding for the python interpreter. This was primarily built for fun, and the actual usefulness of the implementation has not been a primary focus.
-
-In terms of function, the package provides utility functions for generating strings formatted in several different case standards. The standards available are listed below.
-
-| Case name        | Format example           |
-| :--------------: |:-----------------:|
-| camel case       | camelCasedValue   |
-| snake case       | snake_cased_value |
-| pascal case      | PascalCasedValue  |
-| kebab case       | kebab-cased-value |
-| train case       | TRAIN-CASED-VALUE |
-
-While it is very common for systems to convert, e.g., `snake_case` to `camelCase`, it doesn't really make sense to convert `TRAIN-CASE` to itself, and it's not something you should look to use this package for. If you use the module for *anything*, you should keep in mind that the logic is built around converting string from snake/camel case to another format. Converting `"TRAIN-CASE"` to train case will therefore yield `"T-R-A-I-N--C-A-S-E"`. 
+This module offers a handful of case-formatting utility functions. It is a very simple python package, written in [Rust](https://www.rust-lang.org/learn), and implemented using [pyo3](https://github.com/PyO3/pyo3) which offers you easy Rust bindings for the Python interpreter.
 
 ## Install 
 
@@ -30,6 +17,19 @@ pip install rscase
 
 ## Usage
 
+The package provides utility functions for generating strings formatted in several different case standards. 
+
+The case-standards and their functions are listed below.
+
+| Case Name | Function Name | Format example |
+| :--------------: |:-----------------:| :--------------: |
+| camel case       | camel_case | camelCasedValue   |
+| snake case       | snake_case | snake_cased_value |
+| pascal case      | pascal_case | PascalCasedValue  |
+| kebab case       | kebab_case | kebab-cased-value |
+| train case       | train_case | TRAIN-CASED-VALUE |
+
+All functions are accessed the same way
 ```python
 from rscase import rscase
 
@@ -37,12 +37,13 @@ rscase.camel_case('this_is-a_Test')
 >> thisIsATest
 ```
 
+If you want to use this package, please note that the case functions are written to successfully convert camel case and snake case to the remaining formats. Formatting train case to itself doesn't really make sense, and the way I would use this would be to, e.g., serialize out response data to a camelCased format.
 
 ## Benchmarking Performance
 
-Because the functions contained in this package only do some very simple string manipulation, they seem like they might actually be good candidates for a performance test - so why not do one.
+This repo is a bit of an experiment, and because the functions contained in this package only do some very simple string manipulation, they seem like they might actually be good candidates for Python vs Rust performance benchmarking.
  
-To make a test fair, and to make sure we're comparing apples to apples, I decided to test the Rust function `snake_case` to its Python twin, shown below.
+To try and make this a fair comparison - to make sure we're comparing apples to apples - I decided to test the Rust function `snake_case` (see the Rust function [here](src/lib.rs)) to an identical Python function. The Python version is shown below:
 
 ```python
 from rscase import rscase
@@ -71,15 +72,15 @@ def rust_snake_case():
     return rscase.snake_case(string)
 ```
 
-The main difference between the two functions is that Rust requires you to create a vector of `char`'s to iterate through a string, while in Python you don't.
+The main difference between the two functions, flow-wise, is only that Rust won't let you just iterate over a string, so you have to create a vector of `char`'s instead - or at least that's how I did it.
 
 ### Results
 
-After running the tests, the results seems to be pretty promising in favor of the rust implementation. 
+After running the tests, the results seems to be pretty promising - in favor of the Rust implementation. 
 
 | Reps | Rust Execution Time | Python Execution Time | Difference |
 | :--------------: |:-----------------:| :--------------: |:-----------------:|
-| 1 | 18.30 μs | 14.20 μs | 0.78x |
+| 1 | 18.30 μs | 14.20 μs | 0.78x* |
 | 10 | 55.20 μs | 114.20 μs | 2.07x |
 | 100 | .49 ms | 1.11 ms | 2.27x |
 | 1000 | 4.88 ms | 11.18 ms | 2.28x |
@@ -91,4 +92,4 @@ After running the tests, the results seems to be pretty promising in favor of th
 
 After only 100 reps, the results seem to stabilize, and flatten out at around a 2.3x longer execution time for the Python implementation.
 
-The 1-rep result however, seems to show that Python performs better in the scenario that would normally matter. For anyone worried about this, I think there's no doubt that one test of 1 rep is a poor experiment, and so I ran this scenario another one million times. With a larger sample, the average improvement for `1 rep` averages to `1.85x` while the median becomes `1.88x`. In short, the Rust implementation seems to outperform the Python across the board.
+*the 1-rep result seems to show that Python actually outperforms Rust in the scenario that would normally *actually* matter. Since it makes sense that variance would be high when trying to measure something at the microsecond level I decided to run this individual scenario again, another one million times, to increase the sample size. With a larger sample, the average `difference` for 1 rep averages to `1.85x` slower in Python, and the median is `1.88x`. In short, the Rust implementation seems to outperform the Python across the board.
