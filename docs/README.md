@@ -1,6 +1,5 @@
 [![pypi](https://img.shields.io/pypi/v/rscase.svg)](https://pypi.org/project/rscase/)
 [![Tests](https://github.com/sondrelg/rs-case/workflows/Tests/badge.svg)](https://github.com/sondrelg)
-[![Pipeline](https://github.com/sondrelg/rscase/workflows/Pipeline/badge.svg)](https://github.com/sondrelg)
 [![codecov](https://codecov.io/gh/sondrelg/rscase/branch/master/graph/badge.svg)](https://codecov.io/gh/sondrelg/rscase)
 
 ![Rust](https://img.shields.io/badge/Rust-v1.41.0-orange.svg)
