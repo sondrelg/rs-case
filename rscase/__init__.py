@@ -5,5 +5,5 @@ rsCase is a simple python package implemented in Rust for string case translatio
 
 
 __author__ = "Sondre Lillebø Gundersen <sondrelg@live.no>"
-__version__ = "1.0.1"
+__version__ = "1.0.3"
 __all__ = ["rscase"]
