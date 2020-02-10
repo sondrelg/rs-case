@@ -18,6 +18,7 @@ fn valid_snake_case_translations() {
 
 #[test]
 fn valid_camel_case_translations() {
+    assert_eq!(camel_case("this_is-a_Test").unwrap(), "thisIsATest");
     assert_eq!(camel_case("PascalCase").unwrap(), "pascalCase");
     assert_eq!(camel_case("camelCase").unwrap(), "camelCase");
     assert_eq!(camel_case("snake_case").unwrap(), "snakeCase");
