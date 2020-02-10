@@ -8,111 +8,53 @@ use pyo3::prelude::*;
 use pyo3::wrap_pyfunction;
 
 mod snake_case;
+mod camel_case;
+mod pascal_case;
+mod kebab_case;
 use snake_case::convert_snake_case;
+use camel_case::convert_camel_case;
+use pascal_case::convert_pascal_case;
+use kebab_case::convert_kebab_case;
 
 #[pyfunction]
 /// Converts a string to snake_case.
 ///
 /// * `s` - The string you wish to convert.
 pub fn snake_case(string: &str) -> PyResult<String> {
-    let converted_string = convert_snake_case(&string.chars().collect::<Vec<char>>());
-    Ok(converted_string)
+    Ok(convert_snake_case(&string.chars().collect::<Vec<char>>()))
 }
 
 #[pyfunction]
 /// Converts a string to camelCase.
 ///
 /// * `s` - The string you wish to convert.
-pub fn camel_case(s: &str) -> PyResult<String> {
-    let mut cased_s: String = String::new();
-    let character_vector: Vec<char> = s.chars().collect();
-    let dash_vector: Vec<char> = "-".chars().collect();
-    let dash: char = dash_vector[0];
-    let underscore_vector: Vec<char> = "_".chars().collect();
-    let underscore: char = underscore_vector[0];
-    let mut capitalize_next: bool = false;
-    for i in 0..character_vector.len() {
-
-        // First letter is always lower-case
-        if i == 0 {
-            cased_s.push_str(&character_vector[i].to_lowercase().to_string())
-        } // If capitalize_next is True, we capitalize the letter.
-        else if capitalize_next & character_vector[i].is_alphabetic() {
-            cased_s.push_str(&character_vector[i].to_uppercase().to_string());
-            capitalize_next = false;
-        } else if character_vector[i].eq(&underscore) || character_vector[i].eq(&dash) {
-            capitalize_next = true;
-            continue;
-        } // Anything else is returned as lower-case
-        else {
-            cased_s.push_str(&character_vector[i].to_string());
-        }
-    };
-    Ok(cased_s)
+pub fn camel_case(string: &str) -> PyResult<String> {
+    Ok(convert_camel_case(&string.chars().collect::<Vec<char>>()))
 }
 
 #[pyfunction]
 /// Converts a string from camelCase or snake_case to PascalCase.
 ///
 /// * `s` - The string you wish to convert.
-pub fn pascal_case(s: &str) -> PyResult<String> {
-    let mut cased_s: String = String::new();
-    let character_vector: Vec<char> = s.chars().collect();
-    let dash_vector: Vec<char> = "-".chars().collect();
-    let dash: char = dash_vector[0];
-    let underscore_vector: Vec<char> = "_".chars().collect();
-    let underscore: char = underscore_vector[0];
-    let mut capitalize_next: bool = false;
-    for i in 0..character_vector.len() {
-        // First letter is always lower-case
-        if i == 0 {
-            cased_s.push_str(&character_vector[i].to_uppercase().to_string())
-        } // If capitalize_next is True, we capitalize the letter.
-        else if capitalize_next {
-            cased_s.push_str(&character_vector[i].to_uppercase().to_string());
-            capitalize_next = false;
-        } // Underscores are removed, and the next character is capitalized
-        else if character_vector[i].eq(&underscore) || character_vector[i].eq(&dash) {
-            capitalize_next = true;
-            continue;
-        } // Anything else is returned as lower-case
-        else {
-            cased_s.push_str(&character_vector[i].to_string());
-        }
-    };
-    Ok(cased_s)
+pub fn pascal_case(string: &str) -> PyResult<String> {
+    Ok(convert_pascal_case(&string.chars().collect::<Vec<char>>()))
 }
 
 #[pyfunction]
 /// Converts a string from camelCase or snake_case  to kebab-case.
 ///
 /// * `s` - The string you wish to convert.
-pub fn kebab_case(s: &str) -> PyResult<String> {
-    let mut cased_s: String = String::new();
-    let character_vector: Vec<char> = s.chars().collect();
-    let underscore_vector: Vec<char> = "_".chars().collect();
-    let underscore = underscore_vector[0];
-    for i in 0..character_vector.len() {
-        if i == 0 {
-            cased_s.push_str(&character_vector[i].to_lowercase().to_string());
-        } else if character_vector[i].is_uppercase() {
-            cased_s.push_str(&format!("-{}", character_vector[i].to_lowercase()).to_string())
-        } else if character_vector[i].eq(&underscore) {
-            cased_s.push_str(&"-".to_lowercase().to_string())
-        } else {
-            cased_s.push_str(&character_vector[i].to_lowercase().to_string());
-        }
-    };
-    Ok(cased_s)
+pub fn kebab_case(string: &str) -> PyResult<String> {
+    Ok(convert_kebab_case(&string.chars().collect::<Vec<char>>()))
 }
 
 #[pyfunction]
 /// Converts a string from camelCase or snake_case  to TRAIN-CASE.
 ///
 /// * `s` - The string you wish to convert.
-pub fn train_case(s: &str) -> PyResult<String> {
-    let cased_s = kebab_case(&s);
-    Ok(cased_s.unwrap().to_uppercase())
+pub fn train_case(string: &str) -> PyResult<String> {
+    let cased_s = convert_kebab_case(&string.chars().collect::<Vec<char>>());
+    Ok(cased_s.to_uppercase())
 }
 
 
