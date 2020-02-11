@@ -70,7 +70,7 @@ This repo is a bit of an experiment, and because the functions contained in this
  
 To try and make this a fair comparison - to make sure we're comparing apples to apples - I decided to test the Rust function `snake_case` (see the Rust function here_) to an identical Python function. The Python version is shown below:
 
-.. _here: ./src/lib.rs
+.. _here: https://github.com/sondrelg/rs-case/blob/master/src/lib.rs
 
 .. code:: python
 
