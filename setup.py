@@ -17,7 +17,7 @@ except ImportError:
 
 from rscase import __version__, __author__
 
-with open('docs/README.md') as readme_file:
+with open('docs/README.rst') as readme_file:
     readme = readme_file.read()
 
 setup_requires = ["setuptools-rust>=0.10.1", "wheel"]
