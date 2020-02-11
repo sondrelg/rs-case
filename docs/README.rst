@@ -68,7 +68,9 @@ Benchmarking Performance
 
 This repo is a bit of an experiment, and because the functions contained in this package only do some very simple string manipulation, they seem like they might actually be good candidates for Python vs Rust performance benchmarking.
  
-To try and make this a fair comparison - to make sure we're comparing apples to apples - I decided to test the Rust function `snake_case` (see the Rust function [here](src/lib.rs)) to an identical Python function. The Python version is shown below:
+To try and make this a fair comparison - to make sure we're comparing apples to apples - I decided to test the Rust function `snake_case` (see the Rust function here_) to an identical Python function. The Python version is shown below:
+
+.. _here: ./src/lib.rs
 
 .. code:: python
 
@@ -100,7 +102,8 @@ To try and make this a fair comparison - to make sure we're comparing apples to 
 
 The main difference between the two functions, flow-wise, is only that Rust won't let you just iterate over a string, so you have to create a vector of `char`'s instead - or at least that's how I did it.
 
-### Results
+Results
+#######
 
 After running the tests, the results seems to be pretty promising - in favor of the Rust implementation. 
 
@@ -128,4 +131,4 @@ After running the tests, the results seems to be pretty promising - in favor of 
 
 The results are pretty clear: after only 100 reps, the results seem to stabilize, and flatten out at around a 2.3x longer execution time for the Python implementation.
 
-*the 1-rep result seems to show that Python actually outperforms Rust in the scenario that would normally *actually* matter. Since it makes sense that variance would be high when trying to measure something at the microsecond level I decided to run this individual scenario again, another one million times, to increase the sample size. With a larger sample, the average `difference` for 1 rep averages to `1.85x` slower in Python, and the median is `1.88x`. In short, the Rust implementation seems to outperform the Python across the board.
+``*`` the 1-rep result seems to show that Python actually outperforms Rust in the scenario that would normally *actually* matter. Since it makes sense that variance would be high when trying to measure something at the microsecond level I decided to run this individual scenario again, another one million times, to increase the sample size. With a larger sample, the average `difference` for 1 rep averages to `1.85x` slower in Python, and the median is `1.88x`. In short, the Rust implementation seems to outperform the Python across the board.
