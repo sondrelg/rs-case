@@ -1,3 +1,2 @@
-maturin==0.7.7
-python-decouple==3.3
 cffi
+setuptools-rust==0.10.6
