@@ -19,6 +19,8 @@ from rscase import __version__, __author__
 
 with open('docs/README.rst') as readme_file:
     readme = readme_file.read()
+with open('docs/CHANGELOG.rst') as changelog_file:
+    changelog = changelog_file.read()
 
 setup_requires = ["setuptools-rust>=0.10.1", "wheel"]
 
@@ -28,7 +30,7 @@ setup(
     description="Python package for string case formatting; implemented in Rust.",
     py_modules=['rscase'],
     include_package_data=True,
-    long_description=readme,
+    long_description=f"{readme}\n\n{changelog}",
     license="BSD",
     author=__author__,
     author_email="sondrelg@live.no",
