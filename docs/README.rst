@@ -1,3 +1,4 @@
+#######
 rs-case
 #######
 
@@ -182,7 +183,7 @@ This time around, I also decided to test the camel case implementations, as the 
 +-------------+---------------------+-----------------------+------------+
 | 10 000 000  | 23.23 s             | 98.91 s               | 4.26x      |
 +-------------+---------------------+-----------------------+------------+
-| 100 000 000 | xxx s               | xxxx s                | 4.88x      |
+| 100 000 000 | 232 s               | 990 s                 | 4.26x      |
 +-------------+---------------------+-----------------------+------------+
 
 Running the :code:`1 rep` scenario one million times, gives an average Rust execution time of 3.90 μs compared to an average Python execution time of 11.48 μs (almost ~3x slower for Python).
