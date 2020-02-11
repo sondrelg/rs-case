@@ -4,4 +4,4 @@ rsCase is a simple python package implemented in Rust for string case translatio
 """
 
 __author__ = "Sondre Lillebø Gundersen"
-__version__ = "1.0.6"
+__version__ = "1.1.0"  # Remember to change cargo.toml

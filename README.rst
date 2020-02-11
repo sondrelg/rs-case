@@ -1,3 +1,4 @@
+
 #######
 rs-case
 #######
@@ -30,6 +31,8 @@ Install with pip using:
 .. code:: shell
 
     pip install rscase
+
+Note: This package requires :code:`Rust nightly 2020-02-06` or an equivalent future release.
 
 Usage
 #####
@@ -110,9 +113,9 @@ After running the tests, the results seems to be pretty promising - in favor of 
 +-------------+---------------------+-----------------------+------------+
 | Reps        | Rust Execution Time | Python Execution Time | Difference |
 +=============+=====================+=======================+============+
-| 1           | 18.30 μs            | 14.20 μs              | 0.78x*     |
+| 1           | 18.30 us            | 14.20 us              | 0.78x*     |
 +-------------+---------------------+-----------------------+------------+
-| 10          | 55.20 μs            | 114.20 μs             | 2.07x      |
+| 10          | 55.20 us            | 114.20 us             | 2.07x      |
 +-------------+---------------------+-----------------------+------------+
 | 100         | .49 ms              | 1.11 ms               | 2.27x      |
 +-------------+---------------------+-----------------------+------------+
@@ -133,17 +136,19 @@ The results are pretty clear: after only 100 reps, the results seem to stabilize
 
 ``*`` the 1-rep result seems to show that Python actually outperforms Rust in the scenario that would normally *actually* matter. Since it makes sense that variance would be high when trying to measure something at the microsecond level I decided to run this individual scenario again, another one million times, to increase the sample size. With a larger sample, the average `difference` for 1 rep averages to `1.85x` slower in Python, and the median is `1.88x`. In short, the Rust implementation seems to outperform the Python across the board.
 
-Benchmarking Performance - Updated
+Benchmarking Performance - Update
 ##################################
 
-Thanks to `Thomas Hartmann <https://github.com/t-hart>`__ for suggesting a significant performance improvement in the packaged Rust code. Using some experimental features, we're able to improve the performance of the Rust code considerably. The :code:`snake_case` test from above is replicated below, with the performance difference settling at 5x the Python performance.
+Thanks to `Thomas Hartmann <https://github.com/t-hart>`__ for suggesting a significant performance improvement in the packaged Rust code.
+
+Using some experimental features, we're able to improve the performance of the Rust code considerably. The :code:`snake_case` test from above is replicated below, with the performance difference settling at 5x the Python performance.
 
 +-------------+---------------------+-----------------------+------------+
 | Reps        | Rust Execution Time | Python Execution Time | Difference |
 +=============+=====================+=======================+============+
-| 1           | 10.70 μs            | 15.20 μs              | 1.42x      |
+| 1           | 10.70 us            | 15.20 us              | 1.42x      |
 +-------------+---------------------+-----------------------+------------+
-| 10          | 28.70 μs            | 113.30 μs             | 3.95x      |
+| 10          | 28.70 us            | 113.30 us             | 3.95x      |
 +-------------+---------------------+-----------------------+------------+
 | 100         | .24 ms              | 1.11 ms               | 4.56x      |
 +-------------+---------------------+-----------------------+------------+
@@ -160,16 +165,16 @@ Thanks to `Thomas Hartmann <https://github.com/t-hart>`__ for suggesting a signi
 | 100 000 000 | 222 s               | 1086 s                | 4.88x      |
 +-------------+---------------------+-----------------------+------------+
 
-Running the :code:`1 rep` scenario one million times, gives an average Rust execution time of 3.84 μs compared to an average Python execution time of 12.61 μs (~3.3x slower for Python).
+Running the :code:`1 rep` scenario one million times, gives an average Rust execution time of 3.84 us compared to an average Python execution time of 12.61 us (~3.3x slower for Python).
 
 This time around, I also decided to test the camel case implementations, as the logic does behave a bit differently:
 
 +-------------+---------------------+-----------------------+------------+
 | Reps        | Rust Execution Time | Python Execution Time | Difference |
 +=============+=====================+=======================+============+
-| 1           | 10.99 μs            | 14.40 μs              | 1.31x      |
+| 1           | 10.99 us            | 14.40 us              | 1.31x      |
 +-------------+---------------------+-----------------------+------------+
-| 10          | 39.79 μs            | 106.90 μs             | 2.69x      |
+| 10          | 39.79 us            | 106.90 us             | 2.69x      |
 +-------------+---------------------+-----------------------+------------+
 | 100         | .25 ms              | 1.02 ms               | 4.07x      |
 +-------------+---------------------+-----------------------+------------+
@@ -186,6 +191,6 @@ This time around, I also decided to test the camel case implementations, as the 
 | 100 000 000 | 232 s               | 990 s                 | 4.26x      |
 +-------------+---------------------+-----------------------+------------+
 
-Running the :code:`1 rep` scenario one million times, gives an average Rust execution time of 3.90 μs compared to an average Python execution time of 11.48 μs (almost ~3x slower for Python).
+Running the :code:`1 rep` scenario one million times, gives an average Rust execution time of 3.90 us compared to an average Python execution time of 11.48 us (almost ~3x slower for Python).
 
 In summary, the benchmarked performed similarly, with Rust pulling ahead even more, for these two implementations. At the same time, there's probably room for improvement for both implementations still, and probably especially for the Python one.

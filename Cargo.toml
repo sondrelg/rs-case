@@ -1,6 +1,6 @@
 [package]
 name = "rscase"
-version = "1.0.5"
+version = "1.1.0"  # Remember to change __init__.py
 edition = '2018'
 authors = ["Sondre Lillebø Gundersen <sondrelg@live.no>"]
 documentation = "https://github.com/sondrelg/rs-case"

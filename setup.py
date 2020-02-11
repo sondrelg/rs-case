@@ -17,12 +17,10 @@ except ImportError:
 
 from rscase import __version__, __author__
 
-with open('docs/README.rst') as readme_file:
+with open('README.rst') as readme_file:
     readme = readme_file.read()
-with open('docs/CHANGELOG.rst') as changelog_file:
-    changelog = changelog_file.read()
 
-setup_requires = ["setuptools-rust>=0.10.1", "wheel"]
+setup_requires = ["setuptools-rust>=0.10.1", "wheel", "setuptools"]
 
 setup(
     name="rscase",
@@ -30,14 +28,14 @@ setup(
     description="Python package for string case formatting; implemented in Rust.",
     py_modules=['rscase'],
     include_package_data=True,
-    long_description=f"{readme}\n\n{changelog}",
+    long_description=readme,
     license="BSD",
     author=__author__,
     author_email="sondrelg@live.no",
     url="https://github.com/sondrelg/rs-case",
     download_url='https://pypi.python.org/pypi/rscase',
     packages=find_packages(exclude=['']),
-    install_requires=[],
+    install_requires=setup_requires,
     keywords="snake camel pascal train kebab case",
     platforms='OS Independent',
     classifiers=[
@@ -55,7 +53,6 @@ setup(
         "Topic :: Text Processing :: General",
     ],
     setup_requires=setup_requires,
-
-    rust_extensions=[RustExtension("rscase.rscase", binding=Binding.PyO3)],
+    rust_extensions=[RustExtension("rscase.rscase", 'Cargo.toml', binding=Binding.PyO3)],
     zip_safe=False,
 )
