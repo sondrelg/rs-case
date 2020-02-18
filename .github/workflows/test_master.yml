@@ -26,7 +26,6 @@ jobs:
         - ubuntu
         - windows
         target:
-        - 'cp36-*'
         - 'cp37-*'
         - 'cp38-*'
         include:
