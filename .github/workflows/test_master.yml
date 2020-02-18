@@ -1,8 +1,21 @@
-name: CI
+name: TestAndTestDeploy
 
-on: [push]
+on:
+  push
+  branches:
+    - master
 
 jobs:
+  test:
+    name: tests
+    runs-on: ubuntu-16.04
+    steps:
+      - uses: actions/checkout@master
+      - name: Use nightly rust
+        run: rustup override set nightly
+      - uses: actions/checkout@v2
+      - name: Run tests
+        run: cargo test
   build:
     name: build py${{ matrix.python-version || '3.7' }} on ${{ matrix.platform || matrix.os }}
     needs: test
@@ -11,10 +24,8 @@ jobs:
       matrix:
         os:
         - ubuntu
-        - macos
         - windows
         target:
-        - 'cp36-*'
         - 'cp37-*'
         - 'cp38-*'
         include:
@@ -73,8 +84,7 @@ jobs:
       run: twine check dist/*
 
     - name: upload to pypi
-      if: startsWith(github.ref, 'refs/tags/')
-      run: twine upload dist/*
+      run: twine upload --repository-url https://test.pypi.org/legacy/ dist/* --verbose
       env:
         TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
         TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}

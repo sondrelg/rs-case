@@ -1,7 +1,2 @@
 [build-system]
-requires = ["maturin"]
-build-backend = "maturin"
-
-[tool.maturin]
-bindings = "cffi"
-manylinux = "off"
+requires = ["setuptools", "wheel", "setuptools-rust"]

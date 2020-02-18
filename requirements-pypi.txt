@@ -1,3 +1,12 @@
-maturin==0.7.7
-python-decouple==3.3
-cffi
+## Build ##
+# python setup.py develop
+# python setup.py sdist bdist_wheel
+
+## Push to test pypi ##
+# python -m twine upload --repository-url https://test.pypi.org/legacy/ dist/* --verbose --skip-existing
+
+## Push to prod ##
+# python -m twine upload dist/*
+
+setuptools-rust==0.10.6
+twine==3.1.1
