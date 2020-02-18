@@ -1,0 +1,88 @@
+name: CI
+
+on: [push]
+
+jobs:
+  test:
+    name: tests
+    runs-on: ubuntu-16.04
+    steps:
+      - uses: actions/checkout@master
+      - name: Use nightly rust
+        run: rustup override set nightly
+      - uses: actions/checkout@v2
+      - name: Run tests
+        run: cargo test
+  build:
+    name: build py${{ matrix.python-version || '3.7' }} on ${{ matrix.platform || matrix.os }}
+    needs: test
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+        - ubuntu
+        - windows
+        target:
+        - 'cp36-*'
+        - 'cp37-*'
+        - 'cp38-*'
+        include:
+        - os: ubuntu
+          platform: linux
+        - target: 'cp38-*'
+          python-version: 3.8
+        - os: windows
+          ls: dir
+
+    runs-on: ${{ format('{0}-latest', matrix.os) }}
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: set up python ${{ matrix.python-version || '3.7' }}
+      uses: actions/setup-python@v1
+      with:
+        python-version: ${{ matrix.python-version || '3.7' }}
+
+    - name: set up rust
+      if: matrix.target != 'sdist' && matrix.os != 'ubuntu'
+      uses: actions-rs/toolchain@v1
+      with:
+        profile: minimal
+        toolchain: nightly
+        override: true
+
+    - name: install python dependencies
+      run: |
+        pip install -U pip setuptools setuptools-rust wheel twine
+        pip install 'git+https://github.com/samuelcolvin/cibuildwheel.git@github-actions#egg=cibuildwheel'
+    - name: build sdist
+      if: matrix.os == 'ubuntu' && matrix.target == 'cp37-*'
+      run: python setup.py sdist
+
+    - name: build ${{ matrix.platform || matrix.os }} binaries
+      if: matrix.target != 'sdist'
+      run: cibuildwheel --output-dir dist
+      env:
+        CIBW_BUILD: ${{ matrix.target }}
+        CIBW_PLATFORM: ${{ matrix.platform || matrix.os }}
+        CIBW_BEFORE_BUILD_MACOS: 'pip install -U setuptools-rust'
+        CIBW_BEFORE_BUILD_LINUX: >
+          pip install -U setuptools-rust &&
+          curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain=nightly --profile=minimal -y
+        # pip install -U setuptools-rust isn't required on windows
+        CIBW_BEFORE_BUILD_WINDOWS: 'rustup default nightly'
+        CIBW_TEST_COMMAND: 'python -c "from rscase import rscase"'
+        CIBW_ENVIRONMENT: 'PATH="$HOME/.cargo/bin:$PATH"'
+        CIBW_ENVIRONMENT_WINDOWS: 'PATH="$HOME\.cargo\bin:$PATH"'
+
+    - name: list dist files
+      run: ${{ matrix.ls || 'ls -lh' }} dist/
+
+    - name: twine check
+      run: twine check dist/*
+
+    - name: upload to pypi
+      run: twine upload --repository-url https://test.pypi.org/legacy/ dist/* --verbose
+      env:
+        TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+        TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
