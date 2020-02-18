@@ -8,12 +8,9 @@ jobs:
     runs-on: ubuntu-16.04
     steps:
       - uses: actions/checkout@master
-
       - name: Use nightly rust
         run: rustup override set nightly
-
       - uses: actions/checkout@v2
-
       - name: Run tests
         run: cargo test
   build:
@@ -24,7 +21,6 @@ jobs:
       matrix:
         os:
         - ubuntu
-        - macos
         - windows
         target:
         - 'cp36-*'

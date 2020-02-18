@@ -29,6 +29,7 @@ setup(
     py_modules=['rscase'],
     include_package_data=True,
     long_description=readme,
+    long_description_content_type='text/x-rst',
     license="BSD",
     author=__author__,
     author_email="sondrelg@live.no",
