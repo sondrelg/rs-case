@@ -84,7 +84,7 @@ jobs:
       run: twine check dist/*
 
     - name: upload to pypi
-      run: twine upload --repository-url https://test.pypi.org/legacy/ dist/* --verbose
+      run: twine upload dist/* --verbose
       env:
         TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
         TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
