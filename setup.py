@@ -7,7 +7,6 @@ try:
     from setuptools_rust import RustExtension, Binding
 except ImportError:
     import subprocess
-
     errno = subprocess.call([sys.executable, "-m", "pip", "install", "setuptools-rust"])
     if errno:
         print("Please install setuptools-rust package")
