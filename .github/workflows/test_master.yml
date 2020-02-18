@@ -1,9 +1,9 @@
-name: Test and push to pypi
+name: TestAndTestDeploy
 
 on:
-  push
-  branches:
-    - master
+  push:
+    branches:
+      - master
 
 jobs:
   test:

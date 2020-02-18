@@ -1,4 +1,4 @@
-name: Test and push to test-pypi
+name: TestAndDeploy
 
 on:
   push
